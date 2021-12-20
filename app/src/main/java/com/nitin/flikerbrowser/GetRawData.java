@@ -22,13 +22,23 @@ class GetRawData extends AsyncTask<String,Void, String> {
         --> The 2nd parameter is the datatype of progress metric
         --> The 3rd parameter is the return type of our result.
      */
+
     private static final String TAG = "GetRawData";
     private DownloadStatus downloadStatus;
-    private  final MainActivity callBack;
+    private  final OnDownloadComplete callBack;
 
-    public GetRawData(MainActivity mainActivity){
+
+    /*
+       Whoever gonna use the GetRawData must have a callback onDownloadComplete() implemented
+       in it. So we must use an interface here.
+    */
+    interface OnDownloadComplete{
+        void onDownloadComplete(String data, DownloadStatus status);
+    }
+
+    public GetRawData(OnDownloadComplete activity){
         this.downloadStatus = DownloadStatus.IDLE;
-        this.callBack = mainActivity;
+        this.callBack = activity;
     }
     @Override
     protected String doInBackground(String... strings) {
