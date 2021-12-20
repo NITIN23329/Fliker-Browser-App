@@ -51,12 +51,12 @@ class Photo {
     @Override
     public String toString() {
         return "Entity{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", authorID='" + authorID + '\'' +
-                ", link='" + link + '\'' +
-                ", tags='" + tags + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                "title=" + title + '\t' +
+                ", author=" + author + '\t' +
+                ", authorID=" + authorID + '\t' +
+                ", link=" + link + '\t' +
+                ", tags=" + tags + '\t' +
+                ", imageUrl=t" + imageUrl + '\t' +
                 '}';
     }
 }

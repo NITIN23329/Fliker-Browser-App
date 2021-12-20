@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         Log.d(TAG, "onResume: starts");
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
-        getFlikerJsonData.executeOnSameThread("house,black");
+        getFlikerJsonData.execute("house,black");
+//        getFlikerJsonData.runningOnSameThread("house,black");
         Log.d(TAG, "onResume: ends");
     }
 
