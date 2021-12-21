@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nitin.flikerbrowser">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FlikerBrowser">
+        <activity
+            android:name=".PhotoDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_photo_detail"
+            android:theme="@style/Theme.FlikerBrowser.NoActionBar" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:label="@string/title_activity_search"
+            android:theme="@style/Theme.FlikerBrowser.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

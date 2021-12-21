@@ -6,15 +6,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nitin.flikerbrowser.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GetFlikerJsonData.OnDataAvailable{
     private static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     private final String link  = "https://www.flickr.com/services/feeds/photos_public.gne";
+    private FlikerRecyclerViewAdapter flikerRecyclerViewAdapter;
 
     @Override
     protected void onResume() {
@@ -35,6 +39,13 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        // give recyclerView a new Layout manager to handle views
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        flikerRecyclerViewAdapter = new FlikerRecyclerViewAdapter(new ArrayList<>(),this);
+        // associate custom adapter to recycle view
+        recyclerView.setAdapter(flikerRecyclerViewAdapter);
 
 
         Log.d(TAG, "onCreate: ends");
@@ -67,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
     @Override
     public void onDataAvailable(List<Photo> photoList, DownloadStatus status) {
         Log.d(TAG, "onDataAvailable: download status : "+status);
-        for(Photo ele: photoList) System.out.println(ele);
+        if(status == DownloadStatus.OK){
+            flikerRecyclerViewAdapter.loadNewData(photoList);
+        }
     }
 }

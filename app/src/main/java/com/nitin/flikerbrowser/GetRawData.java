@@ -44,7 +44,9 @@ class GetRawData extends AsyncTask<String,Void, String> {
 
     public void runInSameThread(String url){
         // this is same as executing GetRawData in separate thread but in same thread.
-        onPostExecute(doInBackground(url));
+        // we should not use any method which will use super as our callback methode if it is not running
+        // on separate thread
+        this.callBack.onDownloadComplete(doInBackground(url),this.downloadStatus);
     }
     @Override
     protected String doInBackground(String... strings) {
