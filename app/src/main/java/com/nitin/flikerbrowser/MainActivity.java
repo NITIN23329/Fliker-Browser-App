@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nitin.flikerbrowser.databinding.ActivityMainBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GetFlikerJsonData.OnDataAvailable{
+public class MainActivity extends AppCompatActivity implements GetFlikerJsonData.OnDataAvailable, RecyclerOnItemClickListener.OnRecyclerClickListener{
     private static final String TAG = "MainActivity";
     private ActivityMainBinding binding;
     private final String link  = "https://www.flickr.com/services/feeds/photos_public.gne";
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
         getFlikerJsonData.execute("house,black");
-//        getFlikerJsonData.runningOnSameThread("house,black");
         Log.d(TAG, "onResume: ends");
     }
 
@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         // give recyclerView a new Layout manager to handle views
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        flikerRecyclerViewAdapter = new FlikerRecyclerViewAdapter(new ArrayList<>(),this);
+        flikerRecyclerViewAdapter = new FlikerRecyclerViewAdapter(this);
         // associate custom adapter to recycle view
         recyclerView.setAdapter(flikerRecyclerViewAdapter);
-
+        // we need to link our onItemClickListener to the recyclerview for which it is responsible for
+        recyclerView.addOnItemTouchListener(new RecyclerOnItemClickListener(this, recyclerView, this));
 
         Log.d(TAG, "onCreate: ends");
 
@@ -81,5 +82,18 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         if(status == DownloadStatus.OK){
             flikerRecyclerViewAdapter.loadNewData(photoList);
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Log.d(TAG, "onItemClick: called");
+        Toast.makeText(this,"Click at position : "+position,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+        Log.d(TAG, "onItemLongClick: called");
+        Toast.makeText(this,"Long Click at position : "+position,Toast.LENGTH_SHORT).show();
+
     }
 }

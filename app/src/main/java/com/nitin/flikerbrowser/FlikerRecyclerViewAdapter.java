@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewAdapter.FlikerImageViewHolder>{
@@ -42,9 +43,9 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
         }
     }
 
-    public FlikerRecyclerViewAdapter(List<Photo> photoList, Context context) {
-        this.photoList = photoList;
+    public FlikerRecyclerViewAdapter(Context context) {
         this.context = context;
+        this.photoList = new ArrayList<>();
     }
 
     @NonNull
@@ -64,7 +65,7 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
         // This is where we will change the URL to actual image in thumbnail  using Picasso.
         // Picasso load() will take the url and put actual image using into()
         Photo photo = photoList.get(position);
-        Log.d(TAG, "onBindViewHolder: current photo:" + photo.toString());
+        Log.d(TAG, "onBindViewHolder: current photo at position: " + position);
         Picasso.get().load(photo.getImageUrl())
                 .error(R.drawable.place_holder)
                 .placeholder(R.drawable.place_holder)
