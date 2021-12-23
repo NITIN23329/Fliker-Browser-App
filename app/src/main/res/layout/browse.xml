@@ -22,5 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_weight="2"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 </LinearLayout>

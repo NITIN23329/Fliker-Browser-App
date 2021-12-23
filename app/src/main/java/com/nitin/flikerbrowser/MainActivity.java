@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
         Log.d(TAG, "onResume: starts");
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
-        getFlikerJsonData.execute("car,red");
+        getFlikerJsonData.execute("house,tree");
         Log.d(TAG, "onResume: ends");
     }
 
@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.close_app) {
             return true;
         }
 

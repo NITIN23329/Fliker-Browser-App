@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/PINK</item>
         <item name="android:textColor">@color/purple_700</item>
-        <item name="cardBackgroundColor">@color/LIGHT_CYAN</item>
+        <item name="cardBackgroundColor">@color/LIGHT_YELLOW</item>
     </style>
 
     <style name="Theme.FlikerBrowser.NoActionBar">

@@ -10,7 +10,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
         tools:ignore="SpeakableTextPresentCheck">
 
         <androidx.cardview.widget.CardView
@@ -29,20 +31,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/photo_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/photo_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/place_holder" />
 
@@ -51,7 +58,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </ScrollView>

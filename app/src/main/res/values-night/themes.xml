@@ -3,8 +3,8 @@
     <style name="Theme.FlikerBrowser" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. colorPrimary used in toolbar colorPrimaryVariant used above toolbar-->
         <item name="colorPrimary">@color/RED</item>
-        <item name="colorPrimaryVariant">@color/CYAN</item>
-        <item name="colorOnPrimary">@color/PINK</item>
+        <item name="colorPrimaryVariant">@color/DARK_RED</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
         <!-- Secondary brand color. colorSecondary used in FAB background, and colorOnSecondary used for any writing in FAB-->
         <item name="colorSecondary">@color/YELLOW</item>
         <item name="colorSecondaryVariant">@color/purple_700</item>
@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/PINK</item>
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="cardBackgroundColor">@color/LIGHT_YELLOW</item>
     </style>
 </resources>

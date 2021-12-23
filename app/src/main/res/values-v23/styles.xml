@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Since setting cardBackGroundColor in theme.xml did not
+        work cuz it will work on android version 21 or below only, we need to explicitly create
+        a new style file for version 23 and above and it will inherit all properties from theme.xml and
+        additionally set colorBackgroundFloating here-->
+<resources>
+
+    <style name="Theme.FlikerBrowser.NoActionBar">
+        <item name="android:colorBackgroundFloating">@color/LIGHT_YELLOW</item>
+        <item name ="android:navigationBarColor">@color/RED</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>
