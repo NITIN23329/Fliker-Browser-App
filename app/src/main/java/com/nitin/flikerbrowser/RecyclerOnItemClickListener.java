@@ -23,11 +23,9 @@ public class RecyclerOnItemClickListener extends RecyclerView.SimpleOnItemTouchL
         void onItemLongClick(View view, int position);
     }
 
-    private final OnRecyclerClickListener listener;
     private final GestureDetectorCompat gestureDetector;    // tell which type of gesture is happening in RecyclerView
 
     public RecyclerOnItemClickListener(Context context, final RecyclerView recyclerView, OnRecyclerClickListener listener) {
-        this.listener = listener;
         // gesture detecotor allows us to handle event handler of some of the gestures
         gestureDetector = new GestureDetectorCompat(context,new GestureDetector.SimpleOnGestureListener(){
             @Override

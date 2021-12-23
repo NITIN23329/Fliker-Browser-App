@@ -15,11 +15,14 @@
             android:name=".PhotoDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_photo_detail"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.FlikerBrowser.NoActionBar" />
+<!--  if we press back arrow in the toolbar, then it should to which activity should it return, so specify parent activity. -->
         <activity
             android:name=".SearchActivity"
             android:exported="false"
             android:label="@string/title_activity_search"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.FlikerBrowser.NoActionBar" />
         <activity
             android:name=".MainActivity"

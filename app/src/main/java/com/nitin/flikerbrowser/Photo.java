@@ -6,11 +6,15 @@ package com.nitin.flikerbrowser;
 
 import androidx.annotation.NonNull;
 
-class Photo {
+import java.io.Serializable;
+
+class Photo implements Serializable {
     /*
         This hold all the information we need for displaying an entity in the RecyclerView.
+        Implement Serializable so that it can be passed using intent.putExtra()
      */
     private String title, author, authorID, link, tags, imageUrl;
+    public static final long serialVersionUID = 1L;
 
     public Photo(String title, String author, String authorID, String link, String tags, String imageUrl) {
         this.title = title;

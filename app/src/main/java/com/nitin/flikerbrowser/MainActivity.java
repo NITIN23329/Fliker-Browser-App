@@ -1,5 +1,6 @@
 package com.nitin.flikerbrowser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -7,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,9 +15,8 @@ import com.nitin.flikerbrowser.databinding.ActivityMainBinding;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GetFlikerJsonData.OnDataAvailable, RecyclerOnItemClickListener.OnRecyclerClickListener{
+public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDataAvailable, RecyclerOnItemClickListener.OnRecyclerClickListener{
     private static final String TAG = "MainActivity";
-    private ActivityMainBinding binding;
     private final String link  = "https://www.flickr.com/services/feeds/photos_public.gne";
     private FlikerRecyclerViewAdapter flikerRecyclerViewAdapter;
 
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         Log.d(TAG, "onResume: starts");
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
-        getFlikerJsonData.execute("house,black");
+        getFlikerJsonData.execute("car,red");
         Log.d(TAG, "onResume: ends");
     }
 
@@ -35,10 +34,10 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
         Log.d(TAG, "onCreate: starts");
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+        activateToolBar(false); // present in BaseActivity
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         // give recyclerView a new Layout manager to handle views
@@ -86,12 +85,18 @@ public class MainActivity extends AppCompatActivity implements GetFlikerJsonData
 
     @Override
     public void onItemClick(View view, int position) {
-        Log.d(TAG, "onItemClick: called");
-        Toast.makeText(this,"Click at position : "+position,Toast.LENGTH_SHORT).show();
+        // launch the photo_detail activity when a View is being pressed
+        // Intent will make us launch another activity from existing activity
+        Intent intent = new Intent(this,PhotoDetailActivity.class);
+        // putExtra() used to send data across activities, that is, it will send the details of our photo from main_activity to photo_detail_activity
+        // PHOTO_TRANSFER act as a key here to retrieve the data being passed
+        intent.putExtra(PHOTO_TRANSFER,flikerRecyclerViewAdapter.getPhotoAtIndex(position));
+        startActivity(intent);
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
+        // TODO: launch a browser with link to fliker for the given view.
         Log.d(TAG, "onItemLongClick: called");
         Toast.makeText(this,"Long Click at position : "+position,Toast.LENGTH_SHORT).show();
 
