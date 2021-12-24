@@ -130,7 +130,7 @@ public class GetFlikerJsonData extends AsyncTask<String,Void,List<Photo>> implem
                     String imageUrl  = entry.getJSONObject("media").getString("m");
                     photoList.add(new Photo(entry.getString("title"), entry.getString("author"),
                             entry.getString("author_id"),imageUrl.replace("_m.","_b."),
-                            entry.getString("tags"),imageUrl));
+                            entry.getString("tags"),imageUrl,entry.getString("link")));
                 }
             }catch (JSONException e){
                 Log.e(TAG, "onDownloadComplete: error while parsing Json" + e.getMessage());

@@ -1,9 +1,8 @@
 package com.nitin.flikerbrowser;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +26,8 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
         Log.d(TAG, "onResume: starts");
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String query = sharedPreferences.getString(FLIKER_QUERY,"").trim();
+        String query = SearchData.getData();
+        Log.d(TAG, "onResume: query: "+ query);
         if(query.length() > 0) getFlikerJsonData.execute(query);
         Log.d(TAG, "onResume: ends");
     }
@@ -93,6 +92,10 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
     public void onDataAvailable(List<Photo> photoList, DownloadStatus status) {
         Log.d(TAG, "onDataAvailable: download status : "+status);
         if(status == DownloadStatus.OK){
+            if(photoList.size()==0){
+                Toast.makeText(this,"No Photos found for given Tags",Toast.LENGTH_LONG).show();
+                Log.d(TAG, "onBindViewHolder: Toasting");
+            }
             flikerRecyclerViewAdapter.loadNewData(photoList);
         }
     }
@@ -110,9 +113,10 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
 
     @Override
     public void onItemLongClick(View view, int position) {
-        // TODO: launch a browser with link to fliker for the given view.
+        //  launch a browser with link to fliker for the given view.
         Log.d(TAG, "onItemLongClick: called");
-        Toast.makeText(this,"Long Click at position : "+position,Toast.LENGTH_SHORT).show();
-
+        Photo photo = flikerRecyclerViewAdapter.getPhotoAtIndex(position);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(photo.getBrowserLink()));
+        startActivity(intent);
     }
 }

@@ -13,16 +13,17 @@ class Photo implements Serializable {
         This hold all the information we need for displaying an entity in the RecyclerView.
         Implement Serializable so that it can be passed using intent.putExtra()
      */
-    private String title, author, authorID, link, tags, imageUrl;
+    private String title, author, authorID, link, tags, imageUrl,browserLink;
     public static final long serialVersionUID = 1L;
 
-    public Photo(String title, String author, String authorID, String link, String tags, String imageUrl) {
+    public Photo(String title, String author, String authorID, String link, String tags, String imageUrl,String browserLink) {
         this.title = title;
         this.author = author;
         this.authorID = authorID;
         this.link = link;   // link to image to open it in full screen
         this.tags = tags;
         this.imageUrl = imageUrl;     // jpg image link
+        this.browserLink = browserLink; // link to open fliker in app browser
 
 
     }
@@ -49,6 +50,10 @@ class Photo implements Serializable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getBrowserLink(){
+        return browserLink;
     }
 
     @NonNull

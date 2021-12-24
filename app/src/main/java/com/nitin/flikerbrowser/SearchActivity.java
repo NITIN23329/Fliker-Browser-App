@@ -3,9 +3,7 @@ package com.nitin.flikerbrowser;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,8 +49,7 @@ public class SearchActivity extends BaseActivity {
                 Log.d(TAG, "onQueryTextSubmit: query: " + query);
                 //SharedPreferences used to share small amount of data across different activity of same app
                 // since the data are shared among different independent activity, getAppContext() is used
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                sharedPreferences.edit().putString(FLIKER_QUERY,query).apply();
+                SearchData.setData(query.trim());
                 searchView.clearFocus();    // remove the focus from the textview
                 finish();   // goback to parent activity
                 return true;

@@ -28,7 +28,7 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
      */
     private static final String TAG = "RecyclerViewAdapter";
     private List<Photo> photoList;
-    private Context context;    // will be use to download actual image at runtime by picasso.
+    private Context context;
 
     static class FlikerImageViewHolder extends RecyclerView.ViewHolder{
         private static final String TAG = "FlikerImageViewHolder";
@@ -63,27 +63,23 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
     @Override
     public void onBindViewHolder(@NonNull FlikerImageViewHolder holder, int position) {
         // called by layout manager when it want to add some new data to existing view .
-        if(getItemCount() == 1){
-            holder.thumbnail.setImageResource(R.drawable.place_holder);
-            holder.title.setText(R.string.not_found);
-            return;
-        }
         // This is where we will change the URL to actual image in thumbnail  using Picasso.
         // Picasso load() will take the url and put actual image using into()
-        Photo photo = photoList.get(position);
-        Log.d(TAG, "onBindViewHolder: current photo at position: " + position);
-        Picasso.get().load(photo.getImageUrl())
-                .error(R.drawable.place_holder)
-                .placeholder(R.drawable.place_holder)
-                .into(holder.thumbnail);
-        holder.title.setText(photo.getTitle());
+
+            Photo photo = photoList.get(position);
+            Log.d(TAG, "onBindViewHolder: current photo at position: " + position);
+            Picasso.get().load(photo.getImageUrl())
+                    .error(R.drawable.place_holder)
+                    .placeholder(R.drawable.place_holder)
+                    .into(holder.thumbnail);
+            holder.title.setText(photo.getTitle());
     }
 
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount: size:" + photoList.size());
         // return one to show that no photos found
-        return photoList.size()==0?1:photoList.size();
+        return photoList.size();
     }
 
     @SuppressLint("NotifyDataSetChanged")
