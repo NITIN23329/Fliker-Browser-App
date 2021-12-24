@@ -53,6 +53,7 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
     public FlikerImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // called by layout manager to get a new view .
         // onCreateViewHolder() inflate a view from browse.xlm and return it
+
         Log.d(TAG, "onCreateViewHolder: new view requested");
         // LayoutInflater will bring the xml layout into code so that views can be added to xml.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse,parent,false);
@@ -62,6 +63,11 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
     @Override
     public void onBindViewHolder(@NonNull FlikerImageViewHolder holder, int position) {
         // called by layout manager when it want to add some new data to existing view .
+        if(getItemCount() == 1){
+            holder.thumbnail.setImageResource(R.drawable.place_holder);
+            holder.title.setText(R.string.not_found);
+            return;
+        }
         // This is where we will change the URL to actual image in thumbnail  using Picasso.
         // Picasso load() will take the url and put actual image using into()
         Photo photo = photoList.get(position);
@@ -75,8 +81,9 @@ class FlikerRecyclerViewAdapter extends RecyclerView.Adapter<FlikerRecyclerViewA
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: called");
-        return photoList.size();
+        Log.d(TAG, "getItemCount: size:" + photoList.size());
+        // return one to show that no photos found
+        return photoList.size()==0?1:photoList.size();
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -2,5 +2,15 @@
     <string name="app_name">Fliker Browser</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_search">Search Activity</string>
-    <string name="title_activity_photo_detail">Photo Detail Activity</string>
+    <string name="title_activity_photo_detail">Photo Details</string>
+    <string name="photo_detail_description">The photo is being displayed in large view along with other information</string>
+    <string name="browse_photo_description">downloaded list of photos is being displayed</string>
+<!--    '%s' act as a placeholder and the text will replace it during runtime.-->
+    <string name="photo_detail_title">Title : %s</string>
+    <string name="photo_detail_author">Author : %s</string>
+    <string name="photo_detail_tags">Tags : %s</string>
+    <string name="search_tags">Search via Tag</string>
+    <string name="close_app">Close App</string>
+    <string name="searchable_hint">Enter Photo Tags</string>
+    <string name="not_found">No Photos found for specified tags</string>
 </resources>

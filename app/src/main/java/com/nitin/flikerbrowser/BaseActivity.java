@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class BaseActivity extends AppCompatActivity {
     // this will be base class for all activity class in our app instead of AppCompactActivity
-    private static final String FLIKER_QUERY = "FLIKER_QUERY";
+    public static final String FLIKER_QUERY = "FLIKER_QUERY";
     public static final String PHOTO_TRANSFER = "PHOTO_TRANSFER";
     private static final String TAG = "BaseActivity";
 

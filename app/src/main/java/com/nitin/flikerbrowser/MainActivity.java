@@ -1,7 +1,9 @@
 package com.nitin.flikerbrowser;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,12 +22,14 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
     private final String link  = "https://www.flickr.com/services/feeds/photos_public.gne";
     private FlikerRecyclerViewAdapter flikerRecyclerViewAdapter;
 
-    @Override
+    @Override   // onResume() called when activity comes to foreground
     protected void onResume() {
         Log.d(TAG, "onResume: starts");
         super.onResume();
         GetFlikerJsonData getFlikerJsonData = new GetFlikerJsonData(link, this);
-        getFlikerJsonData.execute("house,tree");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String query = sharedPreferences.getString(FLIKER_QUERY,"").trim();
+        if(query.length() > 0) getFlikerJsonData.execute(query);
         Log.d(TAG, "onResume: ends");
     }
 
@@ -62,6 +66,7 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // if you click something on the action bar at top right, this method will get called
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -69,7 +74,16 @@ public class MainActivity extends BaseActivity implements GetFlikerJsonData.OnDa
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.close_app) {
+            // this will close the app
+            finish();
+            return true;    // return true as it been handled
+        }
+        else if(id == R.id.search_tag){
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);

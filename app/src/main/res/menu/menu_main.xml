@@ -4,10 +4,13 @@
     tools:context="com.nitin.flikerbrowser.MainActivity">
     <item
         android:id="@+id/search_tag"
-        android:title="Search Tags" />
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search_tags"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/close_app"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:orderInCategory="100"
-        android:title="Close App"
-        app:showAsAction="never" />
+        android:title="@string/close_app"
+        app:showAsAction="ifRoom" />
 </menu>
