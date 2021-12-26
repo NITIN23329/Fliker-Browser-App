@@ -11,7 +11,9 @@ which will show the picture in a bigger size, the title, author, and tags alloca
 If the user long-press a particular photo, another activity will get generated, which will open the Flicker site link of that image in the browser.
 
 ## Functionalities Implemented :
-0) Enter tags using the search bar present at the Toolbar.
+0) Enter tags using the search bar present at the Toolbar. 
+
+<img str=https://user-images.githubusercontent.com/55681638/147399669-f9b51f47-61f5-4848-9308-128cf601ccaa.jpeg width="200" height="400">
 
 1) Download JSON data from the Flicker site for searched tags.
 2) Parse the JSON data using JSONObject and JSONArray and convert them to a list of Photos.
